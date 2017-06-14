@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="F:\jdk 64位\load" version="1.7.0_67">
+<bootpath>
+<entry path="F:\jdk 64位\load\jre\lib\resources.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\rt.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\sunrsasign.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\jsse.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\jce.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\charsets.jar"/>
+<entry path="F:\jdk 64位\load\jre\lib\jfr.jar"/>
+<entry path="F:\jdk 64位\load\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="F:\jdk 64位\load\jre\lib\ext"/>
+<entry path="C:\Windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="F:\jdk 64位\load\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

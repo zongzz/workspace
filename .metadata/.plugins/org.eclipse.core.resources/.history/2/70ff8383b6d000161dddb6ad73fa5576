@@ -1,0 +1,32 @@
+package aa;
+import android.os.RemoteException;
+
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+
+public class CheckSize extends UiAutomatorTestCase{
+	String size;
+	long starttime;
+	long endtime;
+	
+	public void testDemo() throws UiObjectNotFoundException{
+		try{
+//			System.out.println("");
+//			getUiDevice().wakeUp();
+//root@generic:/ # am start -a android.intent.action.MAIN -S -n com.android.settings/.Settings
+			Runtime.getRuntime().exec("adb shell  am start -a android.intent.action.MAIN -S -n com.android.settings/.Settings");
+			getUiDevice().sleep(10000);
+			getUiDevice().pressHome();
+			
+			//System.out.println();
+			
+			
+		}catch (Exception e){
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+}

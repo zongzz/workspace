@@ -1,0 +1,155 @@
+package studengmanager;
+
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+
+import studentuser.Student;
+import user.operation.StudentOperation;
+
+public class Input {
+	Student st = new Student();
+	Display display =null;
+	final Shell shell = new Shell(display);
+	public Input(Display dy){
+		display = dy;
+		
+	}
+	public void showinputmanager(){
+		shell.setText("录入学生信息");
+		shell.setBounds(100, 100, 400, 600);
+		Group group = new Group(shell, SWT.NONE);
+		group.setText("录入");
+		group.setFont(new Font(display, "楷体",25,SWT.COLOR_GREEN));
+		group.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED));
+		group.setBounds(30, 30, 350, 350);
+		Label name = new Label(group,SWT.NONE);
+		name.setText("姓名");
+		name.setFont(new Font(display, "黑体",15,SWT.NONE));
+		name.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_FOREGROUND));
+		name.setBounds(50, 50, 40, 20);
+		final Text nametext = new Text(group,SWT.BORDER);
+		nametext.setBounds(100, 50, 150, 20);
+		Label sex = new Label(group,SWT.NONE);
+		sex.setText("性别");
+		sex.setFont(new Font(display, "黑体",15,SWT.NONE));
+		sex.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE));
+		sex.setBounds(50,80, 40, 20);
+//		Text sextext = new Text(group,SWT.BORDER);
+//		sextext.setBounds(80, 80, 200, 20);
+		final Combo sexCombo = new Combo(group, SWT.NONE);
+		sexCombo.setBounds(100, 80, 150, 20);
+		sexCombo.add("男");
+		sexCombo.add("女");
+		sexCombo.select(1);
+		Label sno = new Label(group,SWT.NONE);
+		sno.setText("学号");
+		sno.setFont(new Font(display, "黑体",15,SWT.NONE));
+		sno.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+		sno.setBounds(50, 110, 40, 20);
+		final Text snotext = new Text(group,SWT.BORDER);
+		snotext.setBounds(100, 110, 150, 20);
+		Label birth = new Label(group,SWT.NONE);
+		birth.setText("出生日期");
+		birth.setFont(new Font(display, "黑体",15,SWT.NONE));
+		birth.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_CYAN));
+		birth.setBounds(10, 140, 80, 20);
+//		Text birthtext = new Text(group,SWT.BORDER);
+//		birthtext.setBounds(100, 140, 130, 20);
+		final Combo birthyear = new Combo(group, SWT.NONE);
+		birthyear.setBounds(100, 140, 70, 20);
+		for(int i =1985;i<=2015;i++){
+			birthyear.add(""+ i+"年");
+			
+		}
+		birthyear.select(7);
+		final Combo birthmonth = new Combo(group, SWT.NONE);
+		birthmonth.setBounds(180, 140, 50, 20);
+		for(int i =1;i<=12;i++){
+			birthmonth.add(""+ i+"月");
+		}
+		birthmonth.select(0);
+		final Combo birthdate = new Combo(group, SWT.NONE);
+		birthdate.setBounds(250, 140, 50, 20);
+		for(int i =1;i<=31;i++){
+			birthdate.add(""+ i+"日");
+		}
+         birthdate.select(0);
+		Label nation = new Label(group,SWT.NONE);
+		nation.setText("民族");
+		nation.setFont(new Font(display, "黑体",15,SWT.NONE));
+		nation.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
+		nation.setBounds(50, 170, 40, 20);
+		Text nationtext = new Text(group,SWT.BORDER);
+		nationtext.setBounds(100, 170, 150, 20);
+		Label major = new Label(group,SWT.NONE);
+		major.setText("专业");
+		major.setFont(new Font(display, "黑体",15,SWT.NONE));
+		major.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW));
+		major.setBounds(50, 200, 40, 20);
+		final Text majortext = new Text(group,SWT.BORDER);
+		majortext.setBounds(100, 200, 150, 20);
+		Button inputbutton = new Button(group, SWT.CAP_FLAT);
+		inputbutton.setText("录入");
+		inputbutton.setBounds(50, 250, 100, 40);
+		inputbutton.setFont(new Font(display, "宋体",20,SWT.ARROW_DOWN));
+		Button clearbutton = new Button(group, SWT.ABORT);
+		clearbutton.setText("取消");
+		clearbutton.setBounds(180, 250, 100, 40);
+		clearbutton.setFont(new Font(display, "宋体",20,SWT.ARROW_DOWN));
+		inputbutton.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				st.setName(nametext.getText());
+				st.setSex(sexCombo.getText());
+				st.setBirth(birthyear.getText()+birthmonth.getText()+birthdate.getText());
+				st.setMajor(majortext.getText());	
+				st.setNation(nametext.getText());
+				int sno=st.setSno(Integer.parseInt(snotext.getText()));
+				StudentOperation stop = new StudentOperation();
+				boolean flag = stop.addStudent(sno);
+				if(flag==true){
+					System.out.println("chenggong");
+				}
+				else {
+					System.out.println("flase");
+				}
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		shell.pack();
+		shell.open();
+		while(!shell.isDisposed()){
+			if(!display.readAndDispatch()){
+				display.sleep();
+			}
+		}
+		//display.dispose();
+		
+		
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,28 @@
+package aa;
+import android.os.RemoteException;
+
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+
+public class CheckSize extends UiAutomatorTestCase{
+	String size;
+	long starttime;
+	long endtime;
+	
+	public void testDemo() throws UiObjectNotFoundException{
+		try{
+			System.out.println("");
+			getUiDevice().wakeUp();
+			getUiDevice().pressHome();
+			//System.out.println();
+			
+			
+		}catch (RemoteException e){
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+}

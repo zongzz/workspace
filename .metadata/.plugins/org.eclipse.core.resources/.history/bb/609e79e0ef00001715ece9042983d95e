@@ -1,0 +1,198 @@
+package ui;
+
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Font;
+
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Shell;
+
+import studengmanager.DeleteStudent;
+import studengmanager.Input;
+import studengmanager.Modifystudent;
+
+
+public class View_Main {
+	
+	 Display display = null;
+	public View_Main(Display dy){
+		this.display = dy;
+		
+		
+	}
+	public void run(){
+		
+		Shell shell = new Shell(display);
+		//shell.layout(NULL);
+		shell.setSize(500, 500);
+		shell.setText("学生信息管理系统");
+//		Image image = new Image(display,"login.jpg");
+//		shell.setImage(image);
+		Menu  mainMenu = new Menu(shell,SWT.BAR);
+//		Composite composite1=new Composite(shell,SWT.NONE);
+//		composite1.setBounds(10,10,100,50);
+		Composite composite2=new Composite(shell,SWT.CENTER);
+		composite2.setBounds(80,10,500,400);
+		Label label = new Label(composite2, SWT.CENTER);
+		label.setText("欢迎访问学生信息管理系统");
+		label.setFont(new Font(display, "宋体",18,SWT.CENTER));
+		label.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW));
+		label.setBounds(80,200,300, 400);
+		
+	
+		
+		shell.setMenuBar(mainMenu);
+		{
+			MenuItem fileItem = new MenuItem(mainMenu,SWT.CASCADE);
+			fileItem.setText("用戶管理");
+			Menu fileMenu = new Menu(shell,SWT.DROP_DOWN);
+			fileItem.setMenu(fileMenu);
+//			MenuItem studentitem = new MenuItem(mainMenu, SWT.CASCADE);
+//			studentitem.setText("学生信息");
+//			Menu studentMenu = new Menu(shell,SWT.PUSH);
+//			studentitem.setMenu(studentMenu);
+			
+			{
+				MenuItem addUserItem = new MenuItem(fileMenu, SWT.PUSH);
+				addUserItem.setText("增加用戶");
+				MenuItem deleteUserItem = new MenuItem(fileMenu, SWT.CASCADE);
+				deleteUserItem.setText("删除用户");
+				MenuItem modifyUserItem = new MenuItem(fileMenu, SWT.CASCADE);
+				modifyUserItem.setText("修改用户");
+				MenuItem selectAllUsersItem = new MenuItem(fileMenu,SWT.CASCADE);
+				selectAllUsersItem.setText("查询用户");
+				addUserItem.addSelectionListener(new SelectionListener() {
+					
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						View_addUser.addUserShow(display);
+						
+					}
+					
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				deleteUserItem.addSelectionListener(new SelectionListener() {
+					
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						View_deleteUser deleteUser = new View_deleteUser(display);
+						deleteUser.run();
+						
+					}
+					
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				modifyUserItem.addSelectionListener(new SelectionListener() {
+					
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						View_ModifyUser modifyUser = new View_ModifyUser(display);
+						modifyUser.run();
+						
+					}
+					
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				
+			}
+			MenuItem studentitem = new MenuItem(mainMenu, SWT.CASCADE);
+			studentitem.setText("学生信息");
+			Menu studentMenu = new Menu(shell,SWT.DROP_DOWN);
+			studentitem.setMenu(studentMenu);
+			{
+				MenuItem inputItem = new MenuItem(studentMenu, SWT.CASCADE);
+				inputItem.setText("录入学生信息");
+				MenuItem deleteItem = new MenuItem(studentMenu, SWT.CASCADE);
+				deleteItem.setText("删除学生信息");
+				MenuItem modifyItem = new MenuItem(studentMenu, SWT.CASCADE);
+				modifyItem.setText("修改学生信息");
+				MenuItem selectItem = new MenuItem(studentMenu, SWT.CASCADE);
+				selectItem.setText("查询学生信息");
+				inputItem.addSelectionListener(new SelectionListener() {
+					
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						Input input = new Input(display);
+						input.showinputmanager();
+						
+					}
+
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					
+				});
+				deleteItem.addSelectionListener(new SelectionListener() {
+					
+					
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						DeleteStudent delete = new DeleteStudent(display);
+						delete.showdeltemanager();
+						
+					}
+					
+				});
+				modifyItem.addSelectionListener(new SelectionListener() {
+					
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						Modifystudent modify = new Modifystudent(display);
+						modify.showmodifymanager();
+						
+					}
+					
+					@Override
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+			}
+		}
+	//
+//	
+		//shell.pack();
+		shell.open();
+		while(!shell.isDisposed()){
+			if(!display.readAndDispatch()){
+				display.sleep();
+			}
+		}
+       // display.close();
+	}
+	}

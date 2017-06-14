@@ -1,0 +1,96 @@
+package studengmanager;
+
+
+
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+
+public class DeleteStudent {
+	Display display =null;
+	final Shell shell = new Shell(display);
+	public DeleteStudent(Display dy){
+		display = dy;
+		
+	}
+	public void showdeltemanager(){
+		shell.setText("删除学生信息");
+		shell.setBounds(100, 100, 400, 600);
+		Group group = new Group(shell, SWT.NONE);
+		group.setText("删除");
+		group.setBounds(30, 30, 350, 350);
+		Label name = new Label(group,SWT.NONE);
+		name.setText("姓名");
+		name.setFont(new Font(display, "黑体",15,SWT.NONE));
+		name.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_FOREGROUND));
+		name.setBounds(50, 50, 80, 20);
+		Text nametext = new Text(group,SWT.BORDER);
+		nametext.setBounds(80, 50, 200, 20);
+		Label sex = new Label(group,SWT.NONE);
+		sex.setText("性别");
+		sex.setFont(new Font(display, "黑体",15,SWT.NONE));
+		sex.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE));
+		sex.setBounds(50,80, 80, 20);
+		Text sextext = new Text(group,SWT.BORDER);
+		sextext.setBounds(80, 80, 200, 20);
+		Label sno = new Label(group,SWT.NONE);
+		sno.setText("学号");
+		sno.setFont(new Font(display, "黑体",15,SWT.NONE));
+		sno.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+		sno.setBounds(50, 110, 80, 20);
+		Text snotext = new Text(group,SWT.BORDER);
+		snotext.setBounds(80, 110, 200, 20);
+		Label birth = new Label(group,SWT.NONE);
+		birth.setText("出生日期");
+		birth.setFont(new Font(display, "黑体",15,SWT.NONE));
+		birth.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_CYAN));
+		birth.setBounds(30, 140, 80, 20);
+		Text birthtext = new Text(group,SWT.BORDER);
+		birthtext.setBounds(150, 140, 130, 20);
+		Label nation = new Label(group,SWT.NONE);
+		nation.setText("民族");
+		nation.setFont(new Font(display, "黑体",15,SWT.NONE));
+		nation.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
+		nation.setBounds(50, 170, 80, 20);
+		Text nationtext = new Text(group,SWT.BORDER);
+		nationtext.setBounds(80, 170, 200, 20);
+		Label major = new Label(group,SWT.NONE);
+		major.setText("专业");
+		major.setFont(new Font(display, "黑体",15,SWT.NONE));
+		major.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW));
+		major.setBounds(50, 200, 80, 20);
+		Text majortext = new Text(group,SWT.BORDER);
+		majortext.setBounds(80, 200, 200, 20);
+		Button inputbutton = new Button(group, SWT.CAP_FLAT);
+		inputbutton.setText("删除");
+		inputbutton.setBounds(50, 250, 100, 40);
+		inputbutton.setFont(new Font(display, "宋体",20,SWT.ARROW_DOWN));
+		Button clearbutton = new Button(group, SWT.ABORT);
+		clearbutton.setText("取消");
+		clearbutton.setBounds(180, 250, 100, 40);
+		clearbutton.setFont(new Font(display, "宋体",20,SWT.ARROW_DOWN));
+		shell.pack();
+		shell.open();
+		while(!shell.isDisposed()){
+			if(!display.readAndDispatch()){
+				display.sleep();
+			}
+		}
+		display.dispose();
+		
+		
+	}
+	
+	
+	
+	
+
+}
